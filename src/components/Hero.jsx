@@ -103,11 +103,11 @@ export default function Hero() {
         ${
           scrolled
             ? "bg-white text-black backdrop-blur-xl border border-black/10 rounded-full px-6 py-3 shadow-[0_10px_40px_rgba(0,0,0,0.25)] w-fit"
-            : "w-[95%] max-w-[1600px] px-12 py-6 text-white justify-center"
+            : "w-[95%] max-w-[1600px] px-12 py-6 text-white justify-between"
         }
       `}
       >
-        
+        {!scrolled && <div>ARKA</div>}
 
         {/* NAV ITEMS */}
         {/* NAV ITEMS */}
