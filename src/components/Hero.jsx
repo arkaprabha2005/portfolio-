@@ -107,7 +107,7 @@ export default function Hero() {
         }
       `}
       >
-        {!scrolled && <div>ARKA</div>}
+        {!scrolled && <div></div>}
 
         {/* NAV ITEMS */}
         {/* NAV ITEMS */}
