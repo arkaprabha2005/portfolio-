@@ -27,7 +27,7 @@ const projects = [
   subtitle: "Personal Project / 2026",
   tags: ["REACT", "DESIGN", "ANIMATION"],
   details: ["Interactive UI", "Motion Design"],
-  image: "/images/portfolio.png",
+  image: "/images/placeholder-3.jpg",
   link: "#",
 },
 {
@@ -36,7 +36,7 @@ const projects = [
   subtitle: "Java Project / 2025",
   tags: ["JAVA", "SOCKETS", "UI"],
   details: ["Client-Server", "Real-time Messaging"],
-  image: "/images/chat-app.png",
+  image: "/images/placeholder-4.jpg",
   link: "#",
 }
 ];
@@ -54,7 +54,7 @@ const scrollInside = scrollY - offsetTop;
 
 const index = Math.min(
   projects.length - 1,
-  Math.max(0, Math.floor(scrollInside / height))
+  Math.max(0, Math.floor(scrollInside / (height * 0.5)))
 );
     setActive(index);
   };
@@ -65,12 +65,13 @@ const index = Math.min(
   return (
     <section id="work" className="relative h-[400vh] bg-black text-white">
 
-      {/* SECTION TITLE */}
-      <p className="text-white/30 text-sm tracking-widest mb-10">
-        SELECTED PROJECTS
-      </p>
+      
 
-      <div className="sticky top-0 h-screen flex items-center justify-center overflow-hidden py-30">
+      <div className="sticky top-0 h-screen flex items-center justify-center overflow-hidden py-30 relative">
+        {/* SECTION TITLE */}
+      <p className="absolute top-16 left-6 md:left-16 text-white/30 text-sm tracking-[0.3em] transition-opacity duration-700 opacity-0 animate-fadeIn">
+  SELECTED PROJECTS
+</p>
 
 <div className="fixed top-20 right-10 flex gap-3 z-50">
   {projects.map((_, i) => {

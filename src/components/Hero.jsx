@@ -95,18 +95,22 @@ export default function Hero() {
     <>
       {/* ---------------- NAVBAR ---------------- */}
       <div
-        className={`
-        fixed top-6 left-1/2 -translate-x-1/2 z-50
-        flex items-center text-[11px] tracking-[0.28em]
-        transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]
+  className={`
+    fixed top-6 left-1/2 -translate-x-1/2 z-50
+    flex items-center text-[11px] tracking-[0.28em]
+    transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]
+    ${scrolled ? "scale-95" : "scale-100"}
 
-        ${
-          scrolled
-            ? "bg-white text-black backdrop-blur-xl border border-black/10 rounded-full px-6 py-3 shadow-[0_10px_40px_rgba(0,0,0,0.25)] w-fit"
-            : "w-[95%] max-w-[1600px] px-12 py-6 text-white justify-between"
-        }
-      `}
-      >
+    ${
+      scrolled
+        ? "bg-white/10 text-white backdrop-blur-2xl border border-white/20 rounded-full px-6 py-3 w-fit shadow-[0_8px_40px_rgba(0,0,0,0.35),0_0_60px_rgba(34,197,94,0.08)]hover:shadow-[0_8px_40px_rgba(0,0,0,0.45),0_0_80px_rgba(34,197,94,0.18)]"
+        : "w-[95%] max-w-[1600px] px-12 py-6 text-white justify-between"
+    }
+  `}
+>
+        {scrolled && (
+  <div className="absolute inset-0 rounded-full bg-white/5 pointer-events-none" />
+)}
         {!scrolled && <div>ARKA</div>}
 
         {/* NAV ITEMS */}
@@ -114,38 +118,74 @@ export default function Hero() {
 <div ref={containerRef} className="relative flex gap-8 items-center">
 
   <span
-    ref={itemRefs.work}
-    onClick={() => smoothScroll("work")}
-    className={`cursor-pointer hover:opacity-70 ${
-      active === "work" ? "text-green-500" : ""
-    }`}
-  >
-    WORK
-  </span>
+  ref={itemRefs.work}
+  onClick={() => smoothScroll("work")}
+  onMouseMove={(e) => {
+    const rect = e.currentTarget.getBoundingClientRect();
+    const x = e.clientX - rect.left - rect.width / 2;
+    const y = e.clientY - rect.top - rect.height / 2;
+
+    e.currentTarget.style.transform = `translate(${x * 0.2}px, ${y * 0.2}px)`;
+  }}
+  onMouseLeave={(e) => {
+    e.currentTarget.style.transform = `translate(0,0)`;
+  }}
+  className={`cursor-pointer transition ${
+    active === "work"
+      ? "text-green-400"
+      : "text-white/60 hover:text-white"
+  }`}
+>
+  WORK
+</span>
 
   <span
-    ref={itemRefs.about}
-    onClick={() => smoothScroll("about")}
-    className={`cursor-pointer hover:opacity-70 ${
-      active === "about" ? "text-green-500" : ""
-    }`}
-  >
-    ABOUT
-  </span>
+  ref={itemRefs.about}
+  onClick={() => smoothScroll("about")}
+  onMouseMove={(e) => {
+    const rect = e.currentTarget.getBoundingClientRect();
+    const x = e.clientX - rect.left - rect.width / 2;
+    const y = e.clientY - rect.top - rect.height / 2;
+
+    e.currentTarget.style.transform = `translate(${x * 0.2}px, ${y * 0.2}px)`;
+  }}
+  onMouseLeave={(e) => {
+    e.currentTarget.style.transform = `translate(0,0)`;
+  }}
+  className={`cursor-pointer transition ${
+    active === "about"
+      ? "text-green-400"
+      : "text-white/60 hover:text-white"
+  }`}
+>
+  ABOUT
+</span>
 
   <span
-    ref={itemRefs.contact}
-    onClick={() => smoothScroll("contact")}
-    className={`cursor-pointer hover:opacity-70 ${
-      active === "contact" ? "text-green-500" : ""
-    }`}
-  >
-    CONTACT
-  </span>
+  ref={itemRefs.contact}
+  onClick={() => smoothScroll("contact")}
+  onMouseMove={(e) => {
+    const rect = e.currentTarget.getBoundingClientRect();
+    const x = e.clientX - rect.left - rect.width / 2;
+    const y = e.clientY - rect.top - rect.height / 2;
+
+    e.currentTarget.style.transform = `translate(${x * 0.2}px, ${y * 0.2}px)`;
+  }}
+  onMouseLeave={(e) => {
+    e.currentTarget.style.transform = `translate(0,0)`;
+  }}
+  className={`cursor-pointer transition ${
+    active === "contact"
+      ? "text-green-400"
+      : "text-white/60 hover:text-white"
+  }`}
+>
+  CONTACT
+</span>
 
   {/* UNDERLINE */}
   <span
-    className="absolute bottom-[-4px] h-[1px] bg-current origin-left 
+    className="absolute bottom-[-6px] h-[1px] bg-white/60 origin-left 
     transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]"
     style={{
       transform: `translateX(${underline.x}px) scaleX(${underline.width})`,

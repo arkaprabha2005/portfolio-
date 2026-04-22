@@ -66,12 +66,23 @@ export default function ProjectCard({ project }) {
         <div className="relative w-full md:w-1/2 h-[320px] md:h-[420px] overflow-hidden">
 
           <img
-            src={project.image}
-            alt={project.title}
-            className="w-full h-full object-cover 
-            scale-[1.75] group-hover:scale-[2.50] 
-            transition duration-700 ease-out"
-          />
+  src={project.image}
+  alt={project.title}
+  className="w-full h-full object-cover transition duration-300"
+  onMouseMove={(e) => {
+    const rect = e.currentTarget.getBoundingClientRect();
+    const x = (e.clientX - rect.left) / rect.width;
+    const y = (e.clientY - rect.top) / rect.height;
+
+    e.currentTarget.style.transform = `
+      scale(1.05)
+      translate(${(x - 0.5) * 20}px, ${(y - 0.5) * 20}px)
+    `;
+  }}
+  onMouseLeave={(e) => {
+    e.currentTarget.style.transform = "scale(1) translate(0,0)";
+  }}
+/>
 
           {/* ARROW */}
           <div className="absolute bottom-6 right-6 
