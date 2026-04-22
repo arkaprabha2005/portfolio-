@@ -63,7 +63,7 @@ const index = Math.min(
   return () => window.removeEventListener("scroll", handleScroll);
 }, []);
   return (
-    <section id="work" className="relative h-[260vh] bg-black text-white">
+    <section id="work" className="relative h-[280vh] bg-black text-white">
 
       
 
