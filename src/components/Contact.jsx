@@ -11,7 +11,7 @@ export default function Contact() {
         loop
         muted
         playsInline
-        className="absolute inset-0 w-full h-full object-cover opacity-100 blur-[2px]"
+        className="absolute inset-0 w-full h-full object-cover opacity-100 blur-[1px]"
       >
         <source src="/videos/contact-bg.mp4" type="video/mp4" />
       </video>

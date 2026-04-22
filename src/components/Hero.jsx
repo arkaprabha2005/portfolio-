@@ -214,10 +214,11 @@ export default function Hero() {
   loop
   muted
   playsInline
+  preload="none"
   ref={(video) => {
-    if (video) video.playbackRate = 0.7; // 🔥 speed control
+    if (video) video.playbackRate = 0.6;
   }}
-  className="absolute inset-0 w-full h-full object-cover object-[60%_40%] opacity-100 blur-[3px]"
+  className="absolute inset-0 w-full h-full object-cover object-[60%_40%] opacity-90 blur-[2px]"
 >
   <source src="/videos/hero-bg.mp4" type="video/mp4" />
 </video>
