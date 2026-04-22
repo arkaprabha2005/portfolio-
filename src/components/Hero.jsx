@@ -246,7 +246,7 @@ lastScrollY.current = scrollY;
   ref={(video) => {
     if (video) video.playbackRate = 0.6;
   }}
-  className="absolute inset-0 w-full h-full object-cover object-[60%_40%] opacity-70 blur-[2px]"
+  className="absolute inset-0 w-full h-full object-cover object-[60%_40%] opacity-50 blur-[2px]"
 >
   <source src="/videos/hero-bg.mp4" type="video/mp4" />
 </video>
