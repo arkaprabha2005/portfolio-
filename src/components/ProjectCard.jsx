@@ -13,8 +13,13 @@ export default function ProjectCard({ project }) {
     >
       <div
         className="relative flex flex-col md:flex-row 
-        border border-white/10 rounded-3xl overflow-hidden
-        transition-all duration-500 hover:border-white/20 hover:bg-white/[0.03]"
+border border-white/10 rounded-3xl overflow-hidden
+bg-white/[0.02]
+shadow-[0_10px_40px_rgba(0,0,0,0.6)]
+transition-all duration-500 
+hover:-translate-y-2 
+hover:shadow-[0_20px_60px_rgba(0,0,0,0.8)] 
+hover:bg-white/[0.04]"
         onMouseEnter={() => setHovered(true)}
         onMouseLeave={() => setHovered(false)}
         onMouseMove={(e) => {
@@ -26,6 +31,22 @@ export default function ProjectCard({ project }) {
         }}
       >
 
+        {/* 🔥 INNER LIGHT */}
+<div className="absolute inset-0 rounded-3xl bg-white/[0.02] pointer-events-none" />
+{/* 🔥 SPOTLIGHT */}
+<div
+  className="pointer-events-none absolute inset-0 rounded-3xl opacity-0 group-hover:opacity-100 transition duration-300"
+  style={{
+    background: `radial-gradient(
+  300px circle at ${pos?.x || 0}px ${pos?.y || 0}px,
+  rgba(255,255,255,0.08),
+  transparent 60%
+)`,
+  }}
+/>
+
+{/* 🔥 EDGE OUTLINE */}
+<div className="absolute inset-0 rounded-3xl border border-white/5 pointer-events-none" />
         {/* LEFT TEXT */}
         <div className="w-full md:w-1/2 p-8 md:p-12 flex flex-col justify-center">
 
@@ -75,15 +96,15 @@ export default function ProjectCard({ project }) {
     const y = (e.clientY - rect.top) / rect.height;
 
     e.currentTarget.style.transform = `
-      scale(1.05)
-      translate(${(x - 0.5) * 20}px, ${(y - 0.5) * 20}px)
+      scale(1.03)
+      translate(${(x - 0.5) * 12}px, ${(y - 0.5) * 12}px)
     `;
   }}
   onMouseLeave={(e) => {
     e.currentTarget.style.transform = "scale(1) translate(0,0)";
   }}
 />
-
+<div className="absolute inset-0 bg-black/30 pointer-events-none" />
           {/* ARROW */}
           <div className="absolute bottom-6 right-6 
           w-12 h-12 rounded-full 
@@ -98,23 +119,7 @@ export default function ProjectCard({ project }) {
 
         </div>
 
-        {/* 🔥 EXPLORE BUBBLE */}
-        {hovered && (
-          <div
-            className="pointer-events-none absolute z-50"
-            style={{
-              left: pos.x,
-              top: pos.y,
-              transform: "translate(-50%, -50%)",
-            }}
-          >
-            <div className="w-15 h-15 rounded-full bg-white text-black 
-            flex items-center justify-center text-sm font-medium 
-            transition-all duration-200">
-              Explore
-            </div>
-          </div>
-        )}
+       
 
       </div>
     </a>

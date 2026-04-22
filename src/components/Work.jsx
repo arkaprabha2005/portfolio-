@@ -109,7 +109,7 @@ const index = Math.min(
   })}
 </div>
    
-  <div className="relative w-full h-full">
+  <div className="relative w-full max-w-[1200px] mx-auto h-full">
 
     {projects.map((project, i) => (
   <div
