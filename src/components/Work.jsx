@@ -113,19 +113,27 @@ const index = Math.min(
 
     {projects.map((project, i) => (
   <div
-    key={project.id}
-    className={`absolute inset-0 transition-all duration-700 ease-[cubic-bezier(0.22,1,0.36,1)]
-    ${i === active 
-      ? "opacity-100 z-20 translate-y-0 scale-100" 
-      : i < active 
-        ? "opacity-0 -translate-y-32 scale-95 pointer-events-none"
-        : "opacity-0 translate-y-32 scale-95 pointer-events-none"
-    }`}
-  >
+  key={project.id}
+  className={`absolute inset-0 flex items-center justify-center
+  transition-all duration-700 ease-[cubic-bezier(0.22,1,0.36,1)]`}
+  style={{ zIndex: i }}
+>
 
-    <ProjectCard project={project} />
+ <div
+  className={`w-full max-w-[1200px]
+  transition-all duration-700 ease-[cubic-bezier(0.22,1,0.36,1)]
+  ${
+    i === active
+      ? "opacity-100 translate-x-0"
+      : i % 2 === 0
+        ? "opacity-0 translate-x-full pointer-events-none"
+        : "opacity-0 -translate-x-full pointer-events-none"
+  }`}
+>
+  <ProjectCard project={project} />
+</div>
 
-  </div>
+</div>
 ))}
 
   </div>

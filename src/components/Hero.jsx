@@ -1,11 +1,13 @@
 import { useEffect, useRef, useState } from "react";
 import Ticker from "./Ticker";
 
+
 export default function Hero() {
 
   // ---------------- STATE ----------------
   const [scrolled, setScrolled] = useState(false);
   const [active, setActive] = useState("home");
+  const [opacity, setOpacity] = useState(1);
 
   // ---------------- CUSTOM SMOOTH SCROLL ----------------
   const smoothScroll = (id) => {
@@ -41,30 +43,42 @@ export default function Hero() {
     requestAnimationFrame(animate);
   };
 
+
   // ---------------- SCROLL TRACK ----------------
   useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 80);
+  const handleScroll = () => {
+    const scrollY = window.scrollY;
 
-      const sections = ["home", "work", "about", "contact"];
-      const scrollPos = window.scrollY + 200;
+    // navbar scale
+    setScrolled(scrollY > 80);
 
-      for (let id of sections) {
-        const el = document.getElementById(id);
-        if (!el) continue;
+    // 🔥 HERO FADE
+    const maxFade = window.innerHeight * 0.5;
+    const value = 1 - scrollY / maxFade;
+    const clamped = Math.max(0, Math.min(1, value));
+    setOpacity(clamped);
 
-        if (
-          scrollPos >= el.offsetTop &&
-          scrollPos < el.offsetTop + el.offsetHeight
-        ) {
-          setActive(id);
-        }
+    // active section tracking
+    const sections = ["home", "work", "about", "contact"];
+    const scrollPos = scrollY + 200;
+
+    for (let id of sections) {
+      const el = document.getElementById(id);
+      if (!el) continue;
+
+      if (
+        scrollPos >= el.offsetTop &&
+        scrollPos < el.offsetTop + el.offsetHeight
+      ) {
+        setActive(id);
       }
-    };
+    }
+  };
 
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  window.addEventListener("scroll", handleScroll);
+  handleScroll();
+  return () => window.removeEventListener("scroll", handleScroll);
+}, []);
 
   // ---------------- UNDERLINE (SMOOTH TRANSFORM) ----------------
   const containerRef = useRef(null);
@@ -238,15 +252,19 @@ export default function Hero() {
                 </p>
 
                 <h1
-  style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}
-  className="text-[48px] sm:text-[72px] md:text-[110px] lg:text-[150px] leading-[0.9] font-black tracking-[-0.02em]"
+  style={{
+  fontFamily: "'Bricolage Grotesque', sans-serif",
+  opacity: opacity,
+  transform: `translateY(${(1 - opacity) * 40}px)`
+}}
+  className="text-[48px] sm:text-[72px] md:text-[110px] lg:text-[150px] leading-[0.9] font-black tracking-[-0.02em] transition-all duration-300"
 >
                   Arkaprabha
                   <br />
                   <span className="text-white/70">Pal</span>
                 </h1>
 
-                <p className="mt-8 text-[15px] text-white/50 max-w-[520px] leading-relaxed">
+                <p style={{ opacity }} className="mt-8 text-[15px] text-white/50 max-w-[520px] leading-relaxed">
                   India based developer building clean, interactive web experiences 
                   focused on performance, motion and strong design systems.
                 </p>

@@ -30,6 +30,8 @@ hover:bg-white/[0.04]"
           });
         }}
       >
+        <div className="absolute inset-y-0 left-0 w-[2px] bg-white/10" />
+<div className="absolute inset-y-0 right-0 w-[2px] bg-white/10" />
 
         {/* 🔥 INNER LIGHT */}
 <div className="absolute inset-0 rounded-3xl bg-white/[0.02] pointer-events-none" />
