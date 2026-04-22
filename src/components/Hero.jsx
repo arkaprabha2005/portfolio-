@@ -8,6 +8,8 @@ export default function Hero() {
   const [scrolled, setScrolled] = useState(false);
   const [active, setActive] = useState("home");
   const [opacity, setOpacity] = useState(1);
+  const lastScrollY = useRef(0);
+  const [isScrollingUp, setIsScrollingUp] = useState(false);
 
   // ---------------- CUSTOM SMOOTH SCROLL ----------------
   const smoothScroll = (id) => {
@@ -54,9 +56,21 @@ export default function Hero() {
 
     // 🔥 HERO FADE
     const maxFade = window.innerHeight * 0.5;
-    const value = 1 - scrollY / maxFade;
-    const clamped = Math.max(0, Math.min(1, value));
-    setOpacity(clamped);
+    const scrollingUp = scrollY < lastScrollY.current;
+setIsScrollingUp(scrollingUp);
+
+
+let value = 1 - scrollY / maxFade;
+
+// 🔥 make fade-in faster when scrolling up
+if (isScrollingUp) {
+  value = 1 - scrollY / (maxFade * 0.5); // faster recovery
+}
+
+const clamped = Math.max(0, Math.min(1, value));
+setOpacity(clamped);
+
+lastScrollY.current = scrollY;
 
     // active section tracking
     const sections = ["home", "work", "about", "contact"];
@@ -255,9 +269,9 @@ export default function Hero() {
   style={{
   fontFamily: "'Bricolage Grotesque', sans-serif",
   opacity: opacity,
-  transform: `translateY(${(1 - opacity) * 40}px)`
+  transform: `translateY(${(1 - opacity) * (isScrollingUp ? 20 : 40)}px)`
 }}
-  className="text-[48px] sm:text-[72px] md:text-[110px] lg:text-[150px] leading-[0.9] font-black tracking-[-0.02em] transition-all duration-300"
+  className="text-[48px] sm:text-[72px] md:text-[110px] lg:text-[150px] leading-[0.9] font-black tracking-[-0.02em] transition-all duration-200"
 >
                   Arkaprabha
                   <br />
