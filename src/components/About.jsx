@@ -1,6 +1,30 @@
-
+import { useEffect } from "react";
 
 export default function About() {
+
+  useEffect(() => {
+    const lines = document.querySelectorAll(".story-line");
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("active");
+          } else {
+            entry.target.classList.remove("active");
+          }
+        });
+      },
+      {
+        threshold: 0.4,
+      }
+    );
+
+    lines.forEach((line) => observer.observe(line));
+
+    return () => lines.forEach((line) => observer.unobserve(line));
+  }, []);
+
   return (
     <section id="about" className="w-screen px-6 md:px-16 py-24 bg-black text-white border-t border-white/10">
 
@@ -10,48 +34,71 @@ export default function About() {
         <div>
 
           <h2 className="story text-white/30 text-sm tracking-widest mb-8 flex flex-wrap">
-  {"MY STORY".split("").map((char, i) => (
-    <span key={i} className="char inline-block">
-      {char === " " ? "\u00A0" : char}
-    </span>
-  ))}
-</h2>
+            {"MY STORY".split("").map((char, i) => (
+              <span key={i} className="char inline-block">
+                {char === " " ? "\u00A0" : char}
+              </span>
+            ))}
+          </h2>
 
-          <div className="space-y-6 text-white/70 leading-relaxed text-[15px]">
+          {/* 🔥 FIXED STRUCTURE */}
+          <div className="relative pl-6">
 
-            <p>
-              I'm a developer from India focused on building clean, interactive
-              web experiences. I enjoy combining design and code to create
-              interfaces that feel fast, intuitive, and visually strong.
-            </p>
+            {/* LEFT LINE */}
+            <div className="absolute left-0 top-0 w-[2px] h-full bg-white/10" />
 
-            <p>
-              My work revolves around frontend development, UI systems, and
-              crafting smooth user interactions. I like exploring how motion
-              and structure can improve usability.
-            </p>
+            {/* TEXT */}
+            <div className="space-y-6 text-white/60 leading-relaxed text-[15px]">
 
-            <p>
-              I’ve worked on projects ranging from hackathon builds to personal
-              applications, always aiming to improve performance, design clarity,
-              and overall experience.
-            </p>
-
-            <p>
-              I’m constantly learning, experimenting, and refining how I build—
-              whether it's through new technologies or better design thinking.
-            </p>
-            <a
-  href="/resume/arka-resume.pdf"
-  download="Arkaprabha_Pal_resume.pdf"
-  className="inline-flex items-center gap-2 mt-10 
-  border border-white/20 px-5 py-2 rounded-full 
-  text-sm text-white/70 
-  hover:bg-white hover:text-black 
-  transition"
+              <p
+  className="story-line"
+  style={{ transitionDelay: "0ms" }}
 >
-  DOWNLOAD Resume ↓
-</a>
+                I'm a developer from India focused on building clean, interactive
+                web experiences. I enjoy combining design and code to create
+                interfaces that feel fast, intuitive, and visually strong.
+              </p>
+
+              <p
+  className="story-line"
+  style={{ transitionDelay: "120ms" }}
+>
+                My work revolves around frontend development, UI systems, and
+                crafting smooth user interactions. I like exploring how motion
+                and structure can improve usability.
+              </p>
+
+              <p
+  className="story-line"
+  style={{ transitionDelay: "240ms" }}
+>
+                I’ve worked on projects ranging from hackathon builds to personal
+                applications, always aiming to improve performance, design clarity,
+                and overall experience.
+              </p>
+
+              <p
+  className="story-line"
+  style={{ transitionDelay: "360ms" }}
+>
+                I’m constantly learning, experimenting, and refining how I build—
+                whether it's through new technologies or better design thinking.
+              </p>
+
+              <a
+                href="/resume/arka-resume.pdf"
+                download="Arkaprabha_Pal_resume.pdf"
+                className="inline-flex items-center gap-2 mt-10 
+                border border-white/20 px-5 py-2 rounded-full 
+                text-sm text-white/60 
+                hover:bg-white hover:text-black 
+                transition"
+              >
+                DOWNLOAD Resume ↓
+              </a>
+
+            </div>
+
           </div>
 
         </div>

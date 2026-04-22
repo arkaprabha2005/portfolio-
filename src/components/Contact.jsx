@@ -1,23 +1,55 @@
 import { FaGithub, FaLinkedin, FaInstagram } from "react-icons/fa";
 import { MdEmail } from "react-icons/md";
+import { useEffect, useRef, useState } from "react";
 
 export default function Contact() {
-  return (
-    <section id="contact" className="relative w-screen px-6 md:px-16 py-32 bg-black text-white border-t border-white/10 overflow-hidden">
+    const sectionRef = useRef(null);
+const [visible, setVisible] = useState(false);
+useEffect(() => {
+  const observer = new IntersectionObserver(
+    ([entry]) => {
+      setVisible(entry.isIntersecting);
+    },
+    {
+      threshold: 0.5, // trigger when ~40% visible
+    }
+  );
 
+  if (sectionRef.current) {
+    observer.observe(sectionRef.current);
+  }
+
+  return () => {
+    if (sectionRef.current) {
+      observer.unobserve(sectionRef.current);
+    }
+  };
+}, []);
+  return (
+   <section
+  ref={sectionRef}
+  id="contact"
+  className="relative w-screen px-6 md:px-16 py-32 bg-black text-white border-t border-white/10 overflow-hidden"
+>
       {/* VIDEO BACKGROUND */}
       <video
         autoPlay
         loop
         muted
         playsInline
-        className="absolute inset-0 w-full h-full object-cover opacity-100 blur-[1px]"
+        className="absolute inset-0 w-full h-full object-cover opacity-90 blur-[2px]"
       >
         <source src="/videos/contact-bg.mp4" type="video/mp4" />
       </video>
 
       {/* DARK OVERLAY */}
       <div className="absolute inset-0 bg-black/70"></div>
+
+      {/* 🔥 SOFT GLOW */}
+<div className="absolute inset-0 pointer-events-none">
+  <div className="absolute bottom-[-20%] left-1/2 -translate-x-1/2 
+  w-[600px] h-[600px] bg-green-500/10 blur-[120px] rounded-full" />
+</div>
 
       {/* CONTENT */}
       <div className="relative z-10">
@@ -34,18 +66,24 @@ export default function Contact() {
         >
           <h1 className="text-[60px] md:text-[120px] font-black leading-[0.9] tracking-tight">
 
-            <span className="block">
-              Say hi!
-            </span>
+            <span
+  className={`block transition-all duration-700 ease-out
+  ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"}`}
+>
+  Say hi!
+</span>
 
-            <span className="flex items-center gap-4">
+         <span
+  className={`flex items-center gap-4 transition-all duration-700 delay-400 ease-out
+  ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"}`}
+>
 
               <span className="relative transition group-hover:text-red-500">
                 Let’s talk
                 <span className="absolute left-0 bottom-0 w-0 h-[2px] bg-red-500 transition-all duration-300 group-hover:w-full"></span>
               </span>
 
-              <span className="transition duration-300 group-hover:translate-x-2 group-hover:-translate-y-2">
+              <span className="transition duration-300 group-hover:translate-x-2 group-hover:-translate-y-2 transition-all duration-300 ease-out">
                 ↗
               </span>
 
