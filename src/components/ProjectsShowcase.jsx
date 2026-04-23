@@ -1,0 +1,263 @@
+import React, { useEffect, useState, useRef } from "react";
+
+
+export default function ProjectsShowcase() {
+   const textRef = useRef(null);
+const [opacity, setOpacity] = useState(1);
+
+
+useEffect(() => {
+  const handleScroll = () => {
+    const el = textRef.current;
+    if (!el) return;
+
+    const rect = el.getBoundingClientRect();
+    const windowHeight = window.innerHeight;
+
+    // 🔥 CENTER of element
+    const elementCenter = rect.top + rect.height / 2;
+
+    // 🔥 CENTER of screen
+    const screenCenter = windowHeight / 2;
+
+    // distance from center (0 = perfect center)
+    const distance = Math.abs(elementCenter - screenCenter);
+
+    // 🔧 CONTROLS (THIS is what you wanted)
+    const fadeStart = 0.4 * windowHeight; // start fading after 20% away
+    const fadeEnd = 0.6 * windowHeight;   // fully gone at 40% away
+
+    let newOpacity;
+
+    if (distance < fadeStart) {
+      newOpacity = 1; // fully visible at center
+    } else if (distance > fadeEnd) {
+      newOpacity = 0; // fully gone when far
+    } else {
+      // smooth fade between
+      const progress = (distance - fadeStart) / (fadeEnd - fadeStart);
+      newOpacity = 1 - progress;
+    }
+
+    setOpacity(newOpacity);
+  };
+
+  window.addEventListener("scroll", handleScroll);
+  return () => window.removeEventListener("scroll", handleScroll);
+}, []);
+  return (
+    <section id="projects-section" className="relative bg-black text-white pt-[400px] pb-24 overflow-hidden">
+
+      <div
+  ref={textRef}
+  className="absolute left-1/2 top-[120px] -translate-x-1/2 text-center pointer-events-none transition-opacity duration-200"
+  style={{ opacity }}
+>
+  
+  <h1
+    className="text-white/80 text-5xl md:text-8xl tracking-widest"
+    style={{ fontFamily: "Signature" }}
+  >
+    What I Did
+  </h1>
+
+  <div className="flex justify-center gap-3 mt-4">
+    <img src="/arrows/arrow6.png" className="w-[250px] opacity-40" />
+
+  </div>
+
+</div>
+
+      <div className="relative max-w-6xl mx-auto">
+
+        {/* PROJECT 1 */}
+        <div className="relative min-h-[280px] md:h-[360px] mb-28 md:mb-0">
+          <div className="absolute left-1/2 -translate-x-1/2 md:left-[3%] md:translate-x-0 w-[85%] md:w-[44%] rotate-[6deg] origin-bottom relative">
+            <a href="https://github.com/arkaprabha2005/POSHAN" target="_blank">
+              <div className="bg-white p-2 shadow-2xl relative overflow-visible ">
+                <img src="/images/poshan-mockup.png" />
+                <img
+  src="/arrows/arrow1.png"
+  className="
+    absolute
+    w-[100%]
+    top-[25%]
+    left-[100%]
+    rotate-[20deg]
+    opacity-50
+    pointer-events-none
+    select-none
+  "
+/>
+               
+              </div>
+            </a>
+
+            <div className="mt-4">
+              <h3
+  className="text-3xl md:text-6xl leading-none relative z-10"
+  style={{ fontFamily: "Signature" }}
+>
+  Poshan
+</h3>
+              <p className="text-white/70 text-sm">
+                AI-powered agriculture platform
+              </p>
+              <p className="text-green-400 text-xs mt-1">
+                React • AI • Firebase
+              </p>
+              
+            </div>
+          </div>
+
+          {/* Arrow */}
+         
+          
+        </div>
+
+        {/* PROJECT 2 */}
+        <div className="relative min-h-[280px] md:h-[360px] mb-28 md:mb-0">
+          <div className="absolute left-1/2 -translate-x-1/2 md:right-[3%] md:left-auto md:translate-x-0 w-[85%] md:w-[44%] rotate-[-6deg] origin-top">
+            <a href="https://github.com/arkaprabha2005/goalwise-desk" target="_blank">
+              <div className="bg-white p-2 shadow-2xl relative overflow-visible">
+                <img src="/images/placeholder-2.jpg" />
+                  <img
+  src="/arrows/arrow2.png"
+  className="
+    absolute
+    w-[100%]
+    top-[25%]
+    left-[-95%]
+    rotate-[20deg]
+    opacity-50
+    pointer-events-none
+    select-none
+  "
+/>
+
+                
+
+              </div>
+            </a>
+
+            <div className="mt-4">
+              <h3
+  className="text-3xl md:text-6xl leading-none relative z-10"
+  style={{ fontFamily: "Signature" }}
+>
+  GoalWise Desk
+</h3>
+              <p className="text-white/70 text-sm">
+                Task & productivity system
+              </p>
+              <p className="text-green-400 text-xs mt-1">
+                React • Node • MongoDB
+              </p>
+            </div>
+          </div>
+
+        
+        </div>
+
+        {/* PROJECT 3 */}
+      <div className="relative min-h-[280px] md:h-[360px] mb-28 md:mb-0">
+          <div className="absolute left-1/2 -translate-x-1/2 md:left-[3%] md:translate-x-0 w-[85%] md:w-[44%] rotate-[4deg] origin-bottom">
+            <a href="#">
+              <div className="bg-white p-2 shadow-2xl">
+                <img src="/images/placeholder-3.jpg" />
+                <img
+  src="/arrows/arrow3.png"
+  className="
+    absolute
+    w-[70%]
+    top-[5%]
+    left-[100%]
+    opacity-50
+    rotate-[20deg]
+    pointer-events-none
+    select-none
+  "
+/>
+              </div>
+            </a>
+
+            <div className="mt-4">
+              <h3
+  className="text-3xl md:text-6xl leading-none relative z-10"
+  style={{ fontFamily: "Signature" }}
+>
+  Chat Application
+</h3>
+              <p className="text-white/70 text-sm">
+                Real-time socket messaging
+              </p>
+              <p className="text-green-400 text-xs mt-1">
+                Java • Sockets • Swing
+              </p>
+            </div>
+          </div>
+
+         
+         
+        </div>
+
+        {/* PROJECT 4 */}
+        <div className="relative min-h-[470px] md:h-[360px] mb-28 md:mb-0">
+          <div className="absolute left-1/2 -translate-x-1/2 md:right-[3%] md:left-auto md:translate-x-0 w-[85%] md:w-[44%] rotate-[-5deg] origin-top">
+            <a href="#">
+              <div className="bg-white p-2 shadow-2xl">
+                <img src="/images/placeholder-4.jpg" />
+                <img
+  src="/arrows/arrow4.png"
+  className="
+    absolute
+    w-[40%]
+    top-[-5%]
+    left-[-45%]
+    rotate-[10deg]
+    opacity-50
+    pointer-events-none
+    select-none
+  "
+/>
+              </div>
+              
+            </a>
+            
+
+            <div className="mt-4">
+              <h3
+  className="text-3xl md:text-6xl leading-none relative z-10"
+  style={{ fontFamily: "Signature" }}
+>
+  Portfolio
+</h3>
+              <p className="text-white/70 text-sm">
+                Motion-based UI experience
+              </p>
+              <p className="text-green-400 text-xs mt-1">
+                React • Three.js • Tailwind
+              </p>
+            </div>
+          </div>
+
+         
+        </div>
+        <img
+  src="/arrows/arrow5.png"
+  className="
+    absolute
+    left-1/2
+    bottom-[-90px]
+    -translate-x-1/2
+    w-[300px]
+    opacity-50
+    pointer-events-none
+    select-none
+  "
+/>
+
+      </div>
+    </section>
+  );
+}

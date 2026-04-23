@@ -216,3 +216,10 @@ body {
   opacity: 1;
   transform: translateY(0);
 }
+
+@font-face {
+  font-family: 'Signature';
+  src: url('/fonts/Signatrust.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
