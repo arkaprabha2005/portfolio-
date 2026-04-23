@@ -223,3 +223,13 @@ body {
   font-weight: normal;
   font-style: normal;
 }
+
+
+@keyframes scribble {
+  0%, 100% { transform: rotate(0deg); }
+  50% { transform: rotate(0.5deg); }
+}
+
+.scribble {
+  animation: scribble 2.5s ease-in-out infinite;
+}

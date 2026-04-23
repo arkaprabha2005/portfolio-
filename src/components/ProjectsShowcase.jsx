@@ -76,6 +76,27 @@ useEffect(() => {
             <a href="https://github.com/arkaprabha2005/POSHAN" target="_blank">
               <div className="bg-white p-2 shadow-2xl relative overflow-visible ">
                 <img src="/images/poshan-mockup.png" />
+               
+                <p
+  className="
+  scribble
+    absolute
+    top-[40px]
+    left-[160%]
+    -translate-x-1/2
+    text-white/80
+    text-xl md:text-3xl
+    rotate-[10deg]
+    opacity-60
+    whitespace-nowrap
+    pointer-events-none
+    select-none
+  "
+  style={{ fontFamily: "Signature" }}
+>
+  oh ! you'd like this
+</p>
+
                 <img
   src="/arrows/arrow1.png"
   className="
@@ -135,6 +156,26 @@ useEffect(() => {
   "
 />
 
+<p
+  className="
+  scribble
+    absolute
+    top-[70%]
+    left-[-60%]
+    -translate-x-1/2
+    text-white/80
+    text-xl md:text-4xl
+    rotate-[10deg]
+    whitespace-nowrap
+    opacity-60
+    pointer-events-none
+    select-none
+  "
+  style={{ fontFamily: "Signature" }}
+>
+  this one's fun
+</p>
+
                 
 
               </div>
@@ -178,6 +219,25 @@ useEffect(() => {
     select-none
   "
 />
+
+<p
+  className="
+    absolute
+    scribble
+    top-[40%]
+    left-[165%]
+    text-white/80
+    text-xl md:text-3xl
+    rotate-[6deg]
+    opacity-60
+    whitespace-nowrap
+    pointer-events-none
+    select-none
+  "
+  style={{ fontFamily: "Signature" }}
+>
+  check this out
+</p>
               </div>
             </a>
 
@@ -220,6 +280,26 @@ useEffect(() => {
     select-none
   "
 />
+
+<p
+  className="
+  scribble
+    absolute
+    top-[30%]
+    left-[-70%]
+    text-white/80
+    text-xl md:text-3xl
+
+    rotate-[-7deg]
+    opacity-60
+    whitespace-nowrap
+    pointer-events-none
+    select-none
+  "
+  style={{ fontFamily: "Signature" }}
+>
+  this is special !
+</p>
               </div>
               
             </a>
