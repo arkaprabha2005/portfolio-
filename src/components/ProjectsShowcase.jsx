@@ -418,7 +418,7 @@ useEffect(() => {
   className="
     absolute
     left-1/2
-    bottom-[-90px]
+    bottom-[-100px]
     -translate-x-1/2
     w-[300px]
     opacity-50
