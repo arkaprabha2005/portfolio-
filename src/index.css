@@ -233,3 +233,53 @@ body {
 .scribble {
   animation: scribble 2.5s ease-in-out infinite;
 }
+
+@keyframes dropLeft {
+  0% {
+    opacity: 0;
+    transform: rotate(-25deg) translateY(-80px);
+  }
+
+  60% {
+    transform: rotate(10deg) translateY(10px);
+  }
+
+  80% {
+    transform: rotate(-3deg) translateY(-4px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: rotate(var(--final-rotate)) translateY(0);
+  }
+}
+
+.drop-left {
+  animation: dropLeft 0.8s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+/* RIGHT */
+
+@keyframes dropRight {
+  0% {
+    opacity: 0;
+    transform: rotate(25deg) translateY(-80px);
+  }
+
+  60% {
+    transform: rotate(-10deg) translateY(10px);
+  }
+
+  80% {
+    transform: rotate(3deg) translateY(-4px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: rotate(var(--final-rotate)) translateY(0);
+  }
+}
+
+.drop-right {
+  animation: dropRight 0.8s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}

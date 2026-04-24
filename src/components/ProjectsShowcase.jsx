@@ -3,7 +3,50 @@ import React, { useEffect, useState, useRef } from "react";
 
 export default function ProjectsShowcase() {
    const textRef = useRef(null);
+
 const [opacity, setOpacity] = useState(1);
+
+const p1Ref = useRef(null);
+const p2Ref = useRef(null);
+const p3Ref = useRef(null);
+const p4Ref = useRef(null);
+
+
+useEffect(() => {
+  const elements = [
+  { ref: p1Ref, className: "drop-left" },
+  { ref: p2Ref, className: "drop-right" },
+  { ref: p3Ref, className: "drop-left" },
+  { ref: p4Ref, className: "drop-right" },
+];
+
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          const el = entry.target;
+
+          const config = elements.find(e => e.ref.current === el);
+          if (!config) return;
+
+          const index = elements.indexOf(config);
+
+          setTimeout(() => {
+            el.classList.add(config.className);
+          }, index * 150); // stagger
+        }
+      });
+    },
+    { threshold: 0.3 }
+  );
+
+  elements.forEach(({ ref }) => {
+    if (ref.current) observer.observe(ref.current);
+  });
+
+  return () => observer.disconnect();
+}, []);
+
 
 
 useEffect(() => {
@@ -72,9 +115,16 @@ useEffect(() => {
 
         {/* PROJECT 1 */}
         <div className="relative min-h-[280px] md:h-[360px] mb-28 md:mb-0">
-          <div className="absolute left-1/2 -translate-x-1/2 md:left-[3%] md:translate-x-0 w-[85%] md:w-[44%] rotate-[6deg] origin-bottom relative">
+          <div
+  ref={p1Ref}
+  className="absolute left-1/2 -translate-x-1/2 md:left-[3%] md:translate-x-0 w-[85%] md:w-[44%] origin-bottom opacity-0"
+  style={{
+    transformOrigin: "top left",
+    "--final-rotate": "6deg"
+  }}
+>
             <a href="https://github.com/arkaprabha2005/POSHAN" target="_blank">
-              <div className="bg-white p-2 shadow-2xl relative overflow-visible ">
+             <div className="bg-white p-2 shadow-2xl relative overflow-visible">
                 <img src="/images/poshan-mockup.png" />
                
                 <p
@@ -138,9 +188,23 @@ useEffect(() => {
 
         {/* PROJECT 2 */}
         <div className="relative min-h-[280px] md:h-[360px] mb-28 md:mb-0">
-          <div className="absolute left-1/2 -translate-x-1/2 md:right-[3%] md:left-auto md:translate-x-0 w-[85%] md:w-[44%] rotate-[-6deg] origin-top">
+         <div
+  ref={p2Ref}
+  className="absolute left-1/2 -translate-x-1/2 md:right-[3%] md:left-auto md:translate-x-0 w-[85%] md:w-[44%] origin-top opacity-0"
+  style={{
+    transformOrigin: "top right",
+    "--final-rotate": "-6deg"
+  }}
+>
             <a href="https://github.com/arkaprabha2005/goalwise-desk" target="_blank">
-              <div className="bg-white p-2 shadow-2xl relative overflow-visible">
+              <div
+  
+  className="bg-white p-2 shadow-2xl relative overflow-visible"
+  style={{
+  transformOrigin: "top right",
+  "--final-rotate": "-6deg"
+}}
+>
                 <img src="/images/placeholder-2.jpg" />
                   <img
   src="/arrows/arrow2.png"
@@ -202,9 +266,22 @@ useEffect(() => {
 
         {/* PROJECT 3 */}
       <div className="relative min-h-[280px] md:h-[360px] mb-28 md:mb-0">
-          <div className="absolute left-1/2 -translate-x-1/2 md:left-[3%] md:translate-x-0 w-[85%] md:w-[44%] rotate-[4deg] origin-bottom">
+         <div
+  ref={p3Ref}
+  className="absolute left-1/2 -translate-x-1/2 md:left-[3%] md:translate-x-0 w-[85%] md:w-[44%] origin-bottom opacity-0"
+  style={{
+    transformOrigin: "top left",
+    "--final-rotate": "4deg"
+  }}
+>
             <a href="#">
-              <div className="bg-white p-2 shadow-2xl">
+              <div
+  className="bg-white p-2 shadow-2xl"
+  style={{
+  transformOrigin: "top left",
+  "--final-rotate": "4deg"
+}}
+>
                 <img src="/images/placeholder-3.jpg" />
                 <img
   src="/arrows/arrow3.png"
@@ -263,9 +340,22 @@ useEffect(() => {
 
         {/* PROJECT 4 */}
         <div className="relative min-h-[470px] md:h-[360px] mb-28 md:mb-0">
-          <div className="absolute left-1/2 -translate-x-1/2 md:right-[3%] md:left-auto md:translate-x-0 w-[85%] md:w-[44%] rotate-[-5deg] origin-top">
+          <div
+  ref={p4Ref}
+  className="absolute left-1/2 -translate-x-1/2 md:right-[3%] md:left-auto md:translate-x-0 w-[85%] md:w-[44%] origin-top opacity-0"
+  style={{
+    transformOrigin: "top right",
+    "--final-rotate": "-5deg"
+  }}
+>
             <a href="#">
-              <div className="bg-white p-2 shadow-2xl">
+              <div
+  className="bg-white p-2 shadow-2xl"
+  style={{
+  transformOrigin: "top right",
+  "--final-rotate": "-5deg"
+}}
+>
                 <img src="/images/placeholder-4.jpg" />
                 <img
   src="/arrows/arrow4.png"
