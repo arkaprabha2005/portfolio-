@@ -13,40 +13,27 @@ const p4Ref = useRef(null);
 
 
 useEffect(() => {
-  const elements = [
-  { ref: p1Ref, className: "drop-left" },
-  { ref: p2Ref, className: "drop-right" },
-  { ref: p3Ref, className: "drop-left" },
-  { ref: p4Ref, className: "drop-right" },
-];
+  const refs = [p1Ref, p2Ref, p3Ref, p4Ref];
 
   const observer = new IntersectionObserver(
     (entries) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
-          const el = entry.target;
-
-          const config = elements.find(e => e.ref.current === el);
-          if (!config) return;
-
-          const index = elements.indexOf(config);
-
-          setTimeout(() => {
-            el.classList.add(config.className);
-          }, index * 150); // stagger
+          entry.target.classList.add("active");
+        } else {
+          entry.target.classList.remove("active"); // fade out on scroll up
         }
       });
     },
     { threshold: 0.3 }
   );
 
-  elements.forEach(({ ref }) => {
+  refs.forEach((ref) => {
     if (ref.current) observer.observe(ref.current);
   });
 
   return () => observer.disconnect();
 }, []);
-
 
 
 useEffect(() => {
@@ -117,11 +104,11 @@ useEffect(() => {
         <div className="relative min-h-[280px] md:h-[360px] mb-28 md:mb-0">
           <div
   ref={p1Ref}
-  className="absolute left-1/2 -translate-x-1/2 md:left-[3%] md:translate-x-0 w-[85%] md:w-[44%] origin-bottom opacity-0"
-  style={{
-    transformOrigin: "top left",
-    "--final-rotate": "6deg"
-  }}
+  className="reveal absolute left-1/2 -translate-x-1/2 md:left-[3%] md:translate-x-0 w-[85%] md:w-[44%] origin-bottom"
+style={{
+  transformOrigin: "top left",
+  transform: "rotate(6deg)"
+}}
 >
             <a href="https://github.com/arkaprabha2005/POSHAN" target="_blank">
              <div className="bg-white p-2 shadow-2xl relative overflow-visible">
@@ -190,11 +177,11 @@ useEffect(() => {
         <div className="relative min-h-[280px] md:h-[360px] mb-28 md:mb-0">
          <div
   ref={p2Ref}
-  className="absolute left-1/2 -translate-x-1/2 md:right-[3%] md:left-auto md:translate-x-0 w-[85%] md:w-[44%] origin-top opacity-0"
-  style={{
-    transformOrigin: "top right",
-    "--final-rotate": "-6deg"
-  }}
+  className="reveal absolute left-1/2 -translate-x-1/2 md:right-[3%] md:left-auto md:translate-x-0 w-[85%] md:w-[44%] origin-top"
+style={{
+  transformOrigin: "top right",
+  transform: "rotate(-6deg)"
+}}
 >
             <a href="https://github.com/arkaprabha2005/goalwise-desk" target="_blank">
               <div
@@ -202,7 +189,7 @@ useEffect(() => {
   className="bg-white p-2 shadow-2xl relative overflow-visible"
   style={{
   transformOrigin: "top right",
-  "--final-rotate": "-6deg"
+  
 }}
 >
                 <img src="/images/placeholder-2.jpg" />
@@ -268,18 +255,18 @@ useEffect(() => {
       <div className="relative min-h-[280px] md:h-[360px] mb-28 md:mb-0">
          <div
   ref={p3Ref}
-  className="absolute left-1/2 -translate-x-1/2 md:left-[3%] md:translate-x-0 w-[85%] md:w-[44%] origin-bottom opacity-0"
-  style={{
-    transformOrigin: "top left",
-    "--final-rotate": "4deg"
-  }}
+ className="reveal absolute left-1/2 -translate-x-1/2 md:left-[3%] md:translate-x-0 w-[85%] md:w-[44%] origin-bottom"
+style={{
+  transformOrigin: "top left",
+  transform: "rotate(4deg)"
+}}
 >
             <a href="#">
               <div
   className="bg-white p-2 shadow-2xl"
   style={{
   transformOrigin: "top left",
-  "--final-rotate": "4deg"
+  
 }}
 >
                 <img src="/images/placeholder-3.jpg" />
@@ -342,18 +329,18 @@ useEffect(() => {
         <div className="relative min-h-[470px] md:h-[360px] mb-28 md:mb-0">
           <div
   ref={p4Ref}
-  className="absolute left-1/2 -translate-x-1/2 md:right-[3%] md:left-auto md:translate-x-0 w-[85%] md:w-[44%] origin-top opacity-0"
-  style={{
-    transformOrigin: "top right",
-    "--final-rotate": "-5deg"
-  }}
+  className="reveal absolute left-1/2 -translate-x-1/2 md:right-[3%] md:left-auto md:translate-x-0 w-[85%] md:w-[44%] origin-top"
+style={{
+  transformOrigin: "top right",
+  transform: "rotate(-5deg)"
+}}
 >
             <a href="#">
               <div
   className="bg-white p-2 shadow-2xl"
   style={{
   transformOrigin: "top right",
-  "--final-rotate": "-5deg"
+  
 }}
 >
                 <img src="/images/placeholder-4.jpg" />
